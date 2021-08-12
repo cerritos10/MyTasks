@@ -6,6 +6,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const view = new View();
     //model.setView(view);
     view.setModel(model);
-    console.log(model)
-    console.log(view)
+    view.saveLocalS();
 });
