@@ -13,7 +13,7 @@ export default class AddTask{
     onClick(callback) {
         this.btnAdd.onclick = () => {
             if (this.title.value === '' || this.desc.value === '' || this.date.value ==='') {
-                this.alert.show('ERROR: Title and description are required');
+                this.alert.show('ERROR: Title, description and date are required');
             } else {
                 this.alert.hide();
                 callback(this.title.value, this.desc.value, this.date.value)

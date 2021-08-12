@@ -25,8 +25,8 @@ export default class Model {
         this.view = view;
     } */
 
-    getTask(tasks) {
-        return this.tasks;
+    getTask() {
+        return this.tasks.map((task) => ({...task}));
     } 
 
     save() {
@@ -43,6 +43,12 @@ export default class Model {
         task.completed = !task.completed;
         this.save();
         console.log(this.tasks)
+    }
+
+    editTask(id, values){
+        const index = this.findId(id);
+        Object.assign(this.tasks[index], values);
+        this.save();
     }
 
     addTaskModel(title, description, fecha) {
