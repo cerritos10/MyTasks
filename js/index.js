@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
             var calendar = new FullCalendar.Calendar(calendarEl, {
               initialView: 'dayGridMonth',
-              initialDate: '2021-08-12',
               headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
