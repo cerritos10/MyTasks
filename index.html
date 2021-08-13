@@ -14,15 +14,29 @@
     href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css"
     rel="stylesheet"
   />
-  <link rel="shortcut icon" href="favicon.ico">
+  <!-- FullCalendar -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
 
+  <link rel="shortcut icon" href="favicon.ico">
   <title>MyTasks</title>
+<style>
+  .space{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #calendar{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+</style>
+
 </head>
-<body>
+<body class="space">
   <!-- Navbar -->
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">JS Todo List</a>
+    <a class="navbar-brand" href="#">MyTasks</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -115,7 +129,7 @@
               <label>Date</label>
               <input
                 id="modal-date"
-                type="datetime-local"
+                type="date"
                 class="form-control"
                 placeholder="Do Something"
               />
@@ -160,27 +174,27 @@
                 type="text"
                 id="title"
                 class="form-control ml-sm-2"
-                placeholder="Learn JS"
+                placeholder="Write a title"
               >
             </div>
-            <div class="px-sm-2 col-sm-4 d-sm-flex align-items-center mt-2 mt-sm-0">
+            <div class="px-sm-1 col-sm-4 d-sm-flex align-items-center mt-2 mt-sm-0">
               <label class="m-sm-0">Description</label>
               <input
                 type="text"
                 id="description"
                 class="form-control ml-sm-2"
-                placeholder="Watch JS Tutorials"
+                placeholder="Write a description"
               >
             </div>
             <div class="px-sm-1 col-sm-3 d-sm-flex align-items-center mt-2 mt-sm-0">
                 <label class="m-sm-0">Date</label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   id="date"
                   class="form-control ml-sm-2"
                 >
               </div>
-            <div class="col-sm-2 d-sm-flex justify-content-end mt-4 mt-sm-0">
+            <div class="px-sm-3 col-sm-2 d-sm-flex justify-content-end mt-4 mt-sm-0">
               <button type="button" class="btn btn-info btn-block" id="add">
                 Add
               </button>
@@ -213,6 +227,11 @@
       </div>
     </div>
   </main>
+
+  <!-- Calendar -->
+
+    <div id='calendar'></div>
+  
 
   <!-- JQuery -->
   <script

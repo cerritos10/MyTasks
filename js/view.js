@@ -1,5 +1,6 @@
 import AddTask from "./components/add-task.js";
 import Modal from "./components/modal.js";
+import Filters from "./components/filters.js";
 
 export default class View {
     constructor() {
@@ -7,9 +8,11 @@ export default class View {
         this.table = document.getElementById('table');
         this.addTaskForm = new AddTask();
         this.modal = new Modal();
+        this.filters = new Filters();
 
         this.addTaskForm.onClick((title,description, fecha) => this.addTaskView(title,description, fecha));
         this.modal.onClick((id, values) => this.editTask(id, values));
+        this.filters.onClick((filters) => this.filter(filters));
     }
 
     setModel(model) {
@@ -19,6 +22,32 @@ export default class View {
     saveLocalS() {
         const task = this.model.getTask();
         task.forEach((task) => this.createRow(task));
+    }
+
+    filter(filters){
+        const {type, words} = filters;
+        const [, ...rows] = this.table.getElementsByTagName('tr');
+        for(const row of rows) {
+            const [title, description, fecha, completed] = row.children;
+            let hide = false;
+
+            if (words) {
+                hide = !title.innerText.includes(words) && !description.innerText.includes(words)
+            }
+
+            const mustBeCompleted = type === 'completed';
+            const isCompleted = completed.children[0].checked;
+
+            if (type !== 'all' && mustBeCompleted !== isCompleted) {
+                hide = true;
+            }
+
+            if (hide) {
+                row.classList.add('d-none');
+            }else {
+                row.classList.remove('d-none');
+            }
+        }
     }
 
     addTaskView(title, description, fecha) {
@@ -43,6 +72,8 @@ export default class View {
     taskCompleted(id){
         this.model.taskCompleted(id);
     }
+
+    
 
     createRow(task) {
         const row = table.insertRow();
@@ -84,5 +115,7 @@ export default class View {
         removeBtn.innerHTML = '<i class="fa fa-trash"></i>';
         removeBtn.onclick = () => this.removeTask(task.id);
         row.children[4].appendChild(removeBtn);
+
+
     }
 }

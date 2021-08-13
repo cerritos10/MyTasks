@@ -16,7 +16,8 @@ export default class AddTask{
                 this.alert.show('ERROR: Title, description and date are required');
             } else {
                 this.alert.hide();
-                callback(this.title.value, this.desc.value, this.date.value)
+                var fecha = this.date.value;
+                callback(this.title.value, this.desc.value, fecha)
             }
          
         }
